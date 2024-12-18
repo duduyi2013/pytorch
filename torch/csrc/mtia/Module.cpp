@@ -87,6 +87,9 @@ void initModule(PyObject* module) {
   });
 
   m.def("_mtia_emptyCache", []() { at::detail::getMTIAHooks().emptyCache(); });
+
+  m.def("_mtia_resetPeakMemoryStats", [](c10::DeviceIndex device_index) {
+    at::detail::getMTIAHooks().resetPeakMemoryStats(device_index); });
 }
 
 } // namespace torch::mtia
